@@ -1,13 +1,13 @@
 import { Routes } from '@angular/router';
 
 export const routes: Routes = [
+  // {
+  //   path: '',
+  //   redirectTo: 'login',
+  //   pathMatch: 'full',
+  // },
   {
     path: '',
-    redirectTo: 'login',
-    pathMatch: 'full',
-  },
-  {
-    path: 'login',
     loadComponent: () =>
       import('./auth/pages/login-page/login-page.component').then(
         (m) => m.LoginPageComponent
@@ -20,8 +20,8 @@ export const routes: Routes = [
         (m) => m.TaskBoardPageComponent
       ),
   },
-  {
-    path: '**',
-    redirectTo: 'login',
-  },
+  // {
+  //   path: '**',
+  //   redirectTo: 'login',
+  // },
 ];
