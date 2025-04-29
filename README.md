@@ -1,59 +1,216 @@
-# AtomWebappTest
+# 📘 Atom Tasks Frontend (Technical Test)
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.9.
+![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white)
+![Firebase](https://img.shields.io/badge/firebase-%23039BE0.svg?style=for-the-badge&logo=firebase&logoColor=white)
+![Angular](https://img.shields.io/badge/angular-%23DD0031.svg?style=for-the-badge&logo=angular&logoColor=white)
+![RxJS](https://img.shields.io/badge/rxjs-%23B7178C.svg?style=for-the-badge&logo=reactivex&logoColor=white)
+![TailwindCSS](https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white)
+![Firestore](https://img.shields.io/badge/Firestore-%23FFCA28.svg?style=for-the-badge&logo=firebase&logoColor=black)
+![Zod](https://img.shields.io/badge/zod-%233068b7.svg?style=for-the-badge&logo=zod&logoColor=white)
+![ESLint](https://img.shields.io/badge/ESLint-4B3263?style=for-the-badge&logo=eslint&logoColor=white)
+![Prettier](https://img.shields.io/badge/prettier-%23F7B93E.svg?style=for-the-badge&logo=prettier&logoColor=black)
+![GitHub](https://img.shields.io/badge/GitHub-%23181717.svg?style=for-the-badge&logo=github&logoColor=white)
+![Git](https://img.shields.io/badge/Git-%23F05032.svg?style=for-the-badge&logo=git&logoColor=white)
+![Visual Studio Code](https://custom-icon-badges.demolab.com/badge/Visual%20Studio%20Code-0078d7.svg?style=for-the-badge&logo=vsc&logoColor=white)
 
-## Development server
+## 🧩 Descripción del Proyecto
 
-To start a local development server, run:
+Este frontend forma parte del sistema **"Atom Tasks"**, desarrollado como solución al **challenge técnico Fullstack**.
+La aplicación permite a los usuarios iniciar sesión con su correo, visualizar y gestionar sus tareas, agregarlas, editarlas, eliminarlas y marcarlas como completadas,
+todo con una interfaz responsive y moderna basada en Angular 19.
 
-```bash
-ng serve
-```
+## 🚀 Tecnologías Usadas
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+| Tecnología                                                   | Propósito                                                                      |
+| ------------------------------------------------------------ | ------------------------------------------------------------------------------ |
+| [TypeScript](https://www.typescriptlang.org/)                | Superset de JavaScript con tipado estático para mayor seguridad y claridad     |
+| [Node.js](https://nodejs.org/)                               | Entorno de ejecución para JavaScript del lado del servidor                     |
+| [Angular CLI](https://github.com/angular/angular-cli)        | Framework frontend para el desarrollo de la aplicación. Usando la versión 19   |
+| [Firebase Hosting](https://firebase.google.com/docs/hosting) | Hosting de Firebase para alojar la aplicación productiva                       |
+| [Firestore](https://firebase.google.com/products/firestore)  | Base de datos NoSQL en tiempo real usada para almacenar usuarios y tareas      |
+| [Zod](https://zod.dev/)                                      | Librería de validación de esquemas de datos basada en TypeScript (Backend)     |
+| [ESLint](https://eslint.org/)                                | Linter de JavaScript/TypeScript para mantener consistencia y calidad de código |
+| [Prettier](https://prettier.io/)                             | Formateador de código para mantener estilo uniforme                            |
+| [Git](https://git-scm.com/) + [GitHub](https://github.com/)  | Control de versiones y repositorio remoto                                      |
+| [Visual Studio Code](https://code.visualstudio.com/)         | Editor de código optimizado para TypeScript y desarrollo con Firebase          |
 
-## Code scaffolding
+---
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+## 📁 Estructura del Proyecto
 
 ```bash
-ng test
+src/
+├── app/
+│   ├── core/            # Servicios, guards, constantes
+│   ├── features/
+│   │   ├── auth/        # LoginComponent + AuthModule
+│   │   ├── tasks/       # TasksPageComponent + TaskCardComponent
+│   ├── app-routing.module.ts
+├── assets/
+├── environments/
+├── styles/
 ```
 
-## Running end-to-end tests
+## 🖥️ Funcionalidades implementadas
 
-For end-to-end (e2e) testing, run:
+### 🔐 Página de Inicio de Sesión
+
+- [x] Flujo simple con campo de correo electrónico.
+- [x] Llama al endpoint `/users/login-or-create` del backend.
+- [x] Si el usuario existe, redirige a `/tasks`.
+- [x] Si no existe, lo crea automáticamente.
+
+### 📝 Página Principal de Tareas
+
+- [x] Lista todas las tareas del usuario
+- [x] Permite:
+  - [x] Crear nuevas tareas.
+  - [x] Editar título y descripción.
+  - [x] Marcar como completadas o pendientes.
+  - [x] Eliminar tareas.
+- [x] Tareas ordenadas por fecha de creación.
+- [x] Redirección al login desde cualquier parte si no hay sesión activa.
+
+### 🎨 Responsive UI
+
+- [x] Navegación adaptada a móvil y escritorio.
+- [x] Inputs, botones, toasts, checkboxes estilizados.
+
+## 🧠 Principios Aplicados
+
+<pre>
+✔️ Modularización por dominio (auth, tasks)
+✔️ Guards para proteger rutas
+✔️ Servicios singleton (AuthService, TaskService)
+✔️ Observables y async pipe para reactividad
+✔️ TrackBy para performance en ngFor
+✔️ Routing estructurado con lazy loading
+✔️ DRY / KISS / YAGNI
+</pre>
+
+## 🔐 Seguridad
+
+- Restricción de rutas con AuthGuard
+- Validación de datos del usuario antes de realizar peticiones
+- Preparado para incluir autenticación Firebase Auth si se desea escalar
+
+## ⚙️ Configuración del proyecto
+
+1. Clonar el repositorio
+   ```bash
+   git clone https://github.com/tu-usuario/atom-tasks-angular.git
+   cd atom-tasks-angular
+   ```
+2. Instalar dependencias
+   ```bash
+   npm install
+   ```
+3. 3. Ejecutar en desarrollo
+
+   ```bash
+   ng serve
+   ```
+
+   ó bien
+
+   ```bash
+   npm start
+   ```
+
+   Acceder a http://localhost:4200/
+
+### ⚙️ Utilización de Angular CLI
+
+> **_✏️NOTE_** - _**Recordatorio del uso de CLI**_:
+> _Recuerda que es recomendable utilizar el CLI de Angular para la generación
+> recurrente de código ante cualquier situación de creación de nuevos componentes, guards,
+> entre otro tipo recurrente de estructuras de código requeridas en la aplicación._
+
+1. Generar un nuevo componente
+   ```bash
+   ng generate component nombre-componente
+   ```
+2. Generar un nuevo servicio
+
+   ```bash
+   ng generate service nombre-servicio
+   ```
+
+3. Generar un nuevo guard
+
+   ```bash
+   ng generate guard nombre-guard
+   ```
+
+4. Generar un nuevo módulo
+
+   ```bash
+    ng generate module nombre-modulo
+   ```
+
+5. Checar la lista de comandos esquemáticos disponibles
+   ```bash
+   ng generate --help
+   ```
+
+## 🌐 Backend
+
+Este frontend depende de las funciones backend desplegadas en Firebase.
+Asegúrate de tener configurada la URL base en `🗒️ src/app/app.config.ts`:
+
+```typescript
+export const environmentAppConfig = {
+  isDebug: false,
+  apiUrl: "https://api.example.com",
+};
+```
+
+## 🧪 Pruebas
+
+En esta versión se incluyen pruebas básicas en el frontend:
+
+<pre>
+✅ Estructura lista para unit testing
+✅ Servicios desacoplados del DOM
+✅ Uso de TestBed y mocks listos para HttpClientTestingModule
+</pre>
+
+## 🧪 Pruebas unitarias
+
+Para ejecutarlas sólo hace falta realizar:
 
 ```bash
-ng e2e
+  ng test
 ```
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+> **_✏️NOTE_** - _**Karma y su vinculo natural con Angular**_:
+> _Recuerda que es Angular por estándar utiliza la herramienta [Karma](https://karma-runner.github.io)
+> para la ejecución de sus pruebas._
 
-## Additional Resources
+## 🧪 Pruebas e2e
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+Para ejecutarlas sólo hace falta realizar:
+
+```bash
+  ng e2e
+```
+
+> **_✏️NOTE_** - _**Pruebas e2e libres de suite default**_:
+> _Recuerda que es Angular por estándar utiliza permite que tú definas tus pruebas e2e._
+
+## 🚀 Deploy a Firebase Hosting
+
+> **_✏️NOTE_** - _**Inicio de Sesión previamente efectuado**_:
+> _Recuerda que debes de ingresar a tu sesión de firebase desde la CLI, escoger el Id de proyecto
+> correspondiente para que el deploy tenga efecto._
+
+```bash
+npm run build # Se encargará de compilar los últimos cambios hechos en el código a JS
+npm run deploy # Desplegará la función a Firebase
+```
+
+O usa Vercel, Netlify o GitHub Pages si prefieres otro stack.
+
+## 📬 Contacto
+
+Built with 💙 by Luisangel M. Marcia Palma
