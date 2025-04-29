@@ -98,7 +98,7 @@ src/
 
 1. Clonar el repositorio
    ```bash
-   git clone https://github.com/tu-usuario/atom-tasks-angular.git
+   git clone https://github.com/CosmicTiger/atom-tasks-webapp-test.git
    cd atom-tasks-angular
    ```
 2. Instalar dependencias
@@ -184,8 +184,8 @@ Para ejecutarlas sólo hace falta realizar:
 ```
 
 > **_✏️NOTE_** - _**Karma y su vinculo natural con Angular**_:
-> _Recuerda que es Angular por estándar utiliza la herramienta [Karma](https://karma-runner.github.io)
-> para la ejecución de sus pruebas._
+> _Tomar en cuenta que Angular por estándar utiliza la herramienta [Karma](https://karma-runner.github.io)
+> para la ejecución de sus pruebas. Así que, se puede configurar alguna otra librería o bien, utilizar Karma._
 
 ## 🧪 Pruebas e2e
 
@@ -196,7 +196,7 @@ Para ejecutarlas sólo hace falta realizar:
 ```
 
 > **_✏️NOTE_** - _**Pruebas e2e libres de suite default**_:
-> _Recuerda que es Angular por estándar utiliza permite que tú definas tus pruebas e2e._
+> _Recordar que Angular por estándar utiliza permite que definir de manera libre el entorno de pruebas para pruebas e2e._
 
 ## 🚀 Deploy a Firebase Hosting
 
