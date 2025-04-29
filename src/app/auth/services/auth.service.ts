@@ -1,27 +1,28 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { environmentAppConfig } from '../../app.config';
 import { BehaviorSubject } from 'rxjs';
+import { environment } from '@environments/environment';
+import AuthUser from '../interfaces/auth-user.interface';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  private userEmail = new BehaviorSubject<string | null>(null);
-  userEmail$ = this.userEmail.asObservable();
-  private authUrl = `${environmentAppConfig}/users`;
+  private userData = new BehaviorSubject<AuthUser | null>(null);
+  userEmail$ = this.userData.asObservable();
+  private authUrl = `${environment.baseUrl}/users`;
 
   constructor(private http: HttpClient) {}
 
-  loginOrCreate(email: string) {
+  loginOrCreate(email: string): any {
     return this.http.post(`${this.authUrl}/login-or-create`, { email });
   }
 
-  setUser(email: string) {
-    this.userEmail.next(email);
+  setUser(authUser: AuthUser) {
+    this.userData.next(authUser);
   }
 
   logout() {
-    this.userEmail.next(null);
+    this.userData.next(null);
   }
 }

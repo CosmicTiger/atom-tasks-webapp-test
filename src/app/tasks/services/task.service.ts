@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { environmentAppConfig } from '../../app.config';
+import { environment } from '@environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class TaskServiceService {
-  private tasksUrl = `${environmentAppConfig}/tasks`;
+  private tasksUrl = `${environment.baseUrl}/tasks`;
 
   constructor(private http: HttpClient) {}
 
