@@ -41,14 +41,18 @@ export class LoginPageComponent {
 
     const { email = '' } = this.loginForm.value;
 
-    this.authService.loginOrCreate(email!).subscribe({
-      next: (res: HttpResponseWithData<AuthUser>) => {
-        this.authService.setUser(res.data as AuthUser);
-        this.router.navigate(['/task-board']);
-      },
-      error: (err: Error) => {
-        console.error('Login failed', err);
-      },
-    });
+    this.authService
+      .loginOrCreate(email!)
+      .subscribe((isAuthenticated: AuthUser) => {
+        if (isAuthenticated) {
+          this.router.navigateByUrl('/task-board');
+          return;
+        }
+
+        this.hasError.set(true);
+        setTimeout(() => {
+          this.hasError.set(false);
+        }, 2000);
+      });
   }
 }
