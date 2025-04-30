@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<div class="card card-compact bg-base-300 shadow-xl animate-fadeIn">
+  <div class="card-body">
+    <h2 class="card-title font-montserrat text-accent text-lg hover:underline cursor-pointer">
+      <a [routerLink]="['/task-board', task().id]" tabindex="0" role="link"
+        attr.aria-label="Ver detalles de la tarea {{task().title}}">
+        {{ task().title }}
+      </a>
+    </h2>
+    <ng-container *ngIf="task().description; else no_description">
+      <p aria-label="Descripción de la tarea" class="text-gray-200">{{ task().description | slice : 0 : 70 }}</p>
+    </ng-container>
+
+    <ng-template #no_description>
+      <p aria-label="Descripción de la tarea" class="text-gray-500 italic">No hay descripción disponible.</p>
+    </ng-template>
+
+    <div class="flex flex-col md:flex-row justify-between mt-4 mb-4 gap-4" role="group"
+      aria-label="Fechas de manipulación de la tarea">
+      <span class="badge badge-outline h-fit" attr.aria-label="Creado: {{task().createdAt | date: 'dd/MM/yyyy'}}">
+        Creado: {{ task().createdAt | date: 'dd/MM/yyyy' }}
+      </span>
+      <span class="badge badge-outline h-fit"
+        attr.aria-label="Última actualización: {{task().createdAt | date: 'dd/MM/yyyy'}}">
+        Última actualización: {{ task().updatedAt | date: 'dd/MM/yyyy' }}
+      </span>
+    </div>
+    <div class="card-actions md:justify-end mt-6 gap-4" role="group" aria-label="Acciones disponibles">
+      <button class="btn btn-sm btn-accent" (click)="onToggleTask()"
+        attr.aria-label="Marcar como {{ task().isCompleted ? 'pendiente' : 'completado' }}">
+        {{ task().isCompleted ? '✅ Completado' : '❌ Pendiente' }}
+      </button>
+      <button class="btn btn-sm btn-info" (click)="onEditTask()" attr.aria-label="Editar tarea {{task().title}}">
+        ✏️ Editar
+      </button>
+      <button class="btn btn-sm btn-error" (click)="onDeleteTask()" attr.aria-label="Borrar tarea {{task().title}}">
+        🗑️ Borrar
+      </button>
+    </div>
+  </div>
+</div>

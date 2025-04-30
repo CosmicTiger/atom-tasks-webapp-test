@@ -167,13 +167,51 @@ export const environmentAppConfig = {
 
 ## 🧪 Pruebas
 
-En esta versión se incluyen pruebas básicas en el frontend:
+En esta versión no se incluyen pruebas básicas en el frontend.
 
-<pre>
-✅ Estructura lista para unit testing
-✅ Servicios desacoplados del DOM
-✅ Uso de TestBed y mocks listos para HttpClientTestingModule
-</pre>
+## ✅🌐 Accesibilidad (A11y)
+
+Dentro de las prácticas implementadas se incluyen:
+
+1. Uso de atributos ARIA
+
+   - [x] aria-label dinámico en botones y enlaces para describir claramente su propósito.
+   - [x] aria-labelledby y aria-describedby para asociar títulos y descripciones de formularios y modales.
+   - [x] Uso de role="dialog" y aria-modal="true" en modales para indicar correctamente su función.
+
+2. Navegación por teclado
+
+   - [x] Todos los botones e inputs están correctamente focusables (tabindex implícito).
+   - [x] Foco automático en campos relevantes al abrir modales (edit, delete) usando ViewChild + .focus().
+   - [x] Cierre automático del modal al presionar Escape, respetando el flujo natural del teclado.
+
+3. Validación visible y accesible
+
+   - [x] Validaciones de formularios muestran errores con:
+   - [x] Texto visual claro (text-red-500, DaisyUI badges)
+   - [x] Mensajes conectados a inputs vía aria-describedby
+   - [x] aria-invalid="true" dinámico para notificar errores activamente
+   - [x] Inputs tienen label accesibles, incluso si son visualmente ocultos (.sr-only).
+
+4. Contraste y diseño responsivo
+
+   - [x] Uso de temas DaisyUI (dark, light, synthwave, etc.) con colores de alto contraste.
+   - [x] Soporte para cambiar el tema dinámicamente con persistencia en localStorage.
+   - [x] Layout responsivo con flex, w-full, max-w-screen, y sm:flex-col para una experiencia fluida en móvil y desktop.
+
+5. Semántica clara en HTML
+   - [x] Uso correcto de section, form, nav, button, label, dialog, etc.
+
+### 📱 Compatibilidad confirmada
+
+- [x] Navegación por teclado (Tab, Enter, Esc, Shift+Tab)
+- [x] Lectores de pantalla (VoiceOver, NVDA, ChromeVox)
+- [x] Interfaz adaptativa para pantallas móviles y tablets
+
+### 🧩 Opcionalmente implementable
+
+- [x] Foco "trap" dentro del modal (no salir del modal con Tab)
+- [x] Roles como alert, status, log para feedback (ej. Toasts accesibles)
 
 ## 🧪 Pruebas unitarias
 

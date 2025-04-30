@@ -7,12 +7,12 @@ import {
 import { Router } from '@angular/router';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AuthService } from '@app/auth/services/auth.service';
-import { HttpResponseWithData } from '@app/core/interface/http-responses.interface';
 import AuthUser from '@app/auth/interfaces/auth-user.interface';
+import { NavbarComponent } from '@app/shared/components/navbar/navbar.component';
 
 @Component({
   selector: 'app-login-page',
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, NavbarComponent],
   templateUrl: './login-page.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

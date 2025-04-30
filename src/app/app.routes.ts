@@ -17,10 +17,7 @@ export const routes: Routes = [
   {
     path: 'task-board',
     canActivate: [authGuard],
-    loadComponent: () =>
-      import('./tasks/pages/task-board-page/task-board-page.component').then(
-        (m) => m.TaskBoardPageComponent
-      ),
+    loadChildren: () => import('./tasks/task.routes').then((m) => m.taskRoutes),
   },
   {
     path: '**',

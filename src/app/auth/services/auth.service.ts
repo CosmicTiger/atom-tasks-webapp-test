@@ -19,6 +19,10 @@ export class AuthService {
 
   constructor(private http: HttpClient) {}
 
+  get currentUser(): AuthUser | null {
+    return this.userData.getValue();
+  }
+
   loginOrCreate(email: string): any {
     return this.http
       .post<HttpResponseWithData<AuthUser>>(`${this.authUrl}/login-or-create`, {
