@@ -1,1 +1,90 @@
-<p>task-board-page works!</p>,
+<!DOCTYPE html>
+<div class="flex flex-col items-center justify-evenly min-h-screen">
+  <div class="container my-4">
+    <h1 class="text-center mb-4">📝 Lista de Tareas</h1>
+
+    <div>
+      <form [formGroup]="addForm" (ngSubmit)="addTask()" class="flex flex-col items-center gap-2"
+        aria-labelledby="form-title">
+        <h2 id="form-title" class="text-lg font-semibold mb-2">➕📝 Formulario para añadir nuevas tareas</h2>
+        <label for="task-title" class="input input-bordered flex items-center gap-2">
+          <span class="sr-only">Título de la tarea</span>
+          <input id="task-title" type="text" class="grow" placeholder="Ingresa el título de tu nueva tarea"
+            attr.aria-invalid="{{addForm.get('title')?.invalid}}" aria-describedby="title-help"
+            formControlName="title" />
+        </label>
+        <span id="title-help" class="text-sm text-gray-500" *ngIf="addForm.get('title')?.invalid">
+          {{ addForm.get('title')?.hasError('required') ? 'El título es obligatorio' : '' }}
+        </span>
+        <label for="task-description" class="flex items-center gap-2 h-fit">
+          <span class="sr-only">Descripción de la tarea</span>
+          <textarea id="task-description" class="textarea textarea-bordered w-full mb-3"
+            placeholder="Ingresa la descripción de tu nueva tarea"
+            attr.aria-invalid="{{addForm.get('description')?.invalid}}" aria-describedby="description-help"
+            formControlName="description"></textarea>
+        </label>
+        <span id="description-help" class="text-sm text-gray-500" *ngIf="addForm.get('description')?.invalid">
+          {{ addForm.get('description')?.hasError('maxlength') ? 'La descripción no puede exceder los 200 caracteres' : '' }}
+        </span>
+        <button type="submit" class="btn btn-soft btn-primary">➕ Añadir</button>
+      </form>
+    </div>
+
+    <div *ngIf="tasks().length === 0" class="text-center text-gray-500">
+      ❎ No hay tareas aún.
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      <app-task-card *ngFor="let task of tasks()" [task]="task" (toggle)="onToggle(task)" (edit)="onEdit(task)"
+        (delete)="onDelete(task)" />
+    </div>
+
+    <dialog id="editModal" class="modal" [open]="showEditModal" role="dialog" aria-modal="true"
+      aria-labelledby="edit-title" aria-describedby="edit-description">
+      <div id="edit-title" class="modal-box">
+        <h3 class="font-bold text-lg mb-4">✏️ Editar tarea: <span
+            class="font-semibold">"{{ selectedTask?.title }}"</span></h3>
+        <p id="edit-description" class="sr-only">
+          Formulario para actualizar el título y descripción de la tarea seleccionada
+        </p>
+        <form [formGroup]="editForm" (ngSubmit)="confirmEdit()">
+          <label for="edit-task-title" class="sr-only">Nuevo título de la tarea</label>
+          <input #editTitleInput id="edit-task-title" formControlName="title" class="input input-bordered w-full mb-3"
+            placeholder="Nuevo título de la tarea" [attr.aria-invalid]="editForm.get('title')?.invalid" />
+          <label for="edit-task-description" class="sr-only">Nueva descripción de la tarea</label>
+          <textarea id="edit-task-description" formControlName="description"
+            class="textarea textarea-bordered w-full mb-3" placeholder="Nueva descripción de la tarea"></textarea>
+          <div class="modal-action">
+            <button type="submit" class="btn btn-primary">Guardar</button>
+            <button type="button" class="btn" (click)="closeEditModal()">Cancelar</button>
+          </div>
+        </form>
+      </div>
+    </dialog>
+
+    <dialog id="deleteModal" class="modal" [open]="showDeleteModal" role="alertdialog" aria-modal="true"
+      aria-labelledby="delete-title" aria-describedby="delete-description">
+      <div class="modal-box">
+        <h3 id="delete-title" class="font-bold text-lg text-error">¿Estás seguro?</h3>
+        <p id="delete-description" class="py-2">Esta acción eliminará la tarea <span
+            class="font-semibold">"{{ selectedTask?.title }}"</span>.
+        </p>
+        <div class="modal-action">
+          <button #deleteConfirmButton class="btn btn-error" (click)="confirmDelete()">
+            🗑️ Eliminar
+          </button>
+          <button class="btn" (click)="closeDeleteModal()">
+            ✖ Cancelar
+          </button>
+        </div>
+      </div>
+    </dialog>
+
+  </div>
+
+  <div class="mt-4 text-center">
+    <p>
+      Powered by <a href="https://github.com/CosmicTiger">&#64;CosmicTiger</a>
+    </p>
+  </div>
+</div>,

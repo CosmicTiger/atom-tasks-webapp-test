@@ -7,12 +7,12 @@ import {
 import { Router } from '@angular/router';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AuthService } from '@app/auth/services/auth.service';
-import { HttpResponseWithData } from '@app/core/interface/http-responses.interface';
 import AuthUser from '@app/auth/interfaces/auth-user.interface';
+import { NavbarComponent } from '@app/shared/components/navbar/navbar.component';
 
 @Component({
   selector: 'app-login-page',
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, NavbarComponent],
   templateUrl: './login-page.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
@@ -41,14 +41,18 @@ export class LoginPageComponent {
 
     const { email = '' } = this.loginForm.value;
 
-    this.authService.loginOrCreate(email!).subscribe({
-      next: (res: HttpResponseWithData<AuthUser>) => {
-        this.authService.setUser(res.data as AuthUser);
-        this.router.navigate(['/task-board']);
-      },
-      error: (err: Error) => {
-        console.error('Login failed', err);
-      },
-    });
+    this.authService
+      .loginOrCreate(email!)
+      .subscribe((isAuthenticated: AuthUser) => {
+        if (isAuthenticated) {
+          this.router.navigateByUrl('/task-board');
+          return;
+        }
+
+        this.hasError.set(true);
+        setTimeout(() => {
+          this.hasError.set(false);
+        }, 2000);
+      });
   }
 }

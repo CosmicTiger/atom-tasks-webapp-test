@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<nav class="bg-neutral text-neutral-content shadow-lg mb-6">
+  <div
+    class="navbar w-full max-w-screen-lg mx-auto px-4 py-2 flex flex-col flex-wrap md:flex-row justify-center md:justify-between items-center">
+    <span class="font-bold text-lg">📝 AtomTasks</span>
+
+    <div class="flex flex-col flex-wrap md:flex-row items-center justify-center gap-4">
+      <div *ngIf="currentUser() as user" class="flex flex-col md:flex-row items-center gap-4">
+        <span class="text-sm">
+          👤 {{ user.email }}
+        </span>
+        <button class="btn btn-sm btn-outline btn-error" (click)="logout()">
+          🚪 Cerrar Sesión
+        </button>
+      </div>
+      <div class="dropdown dropdown-end">
+        <label tabindex="0" class="btn btn-sm btn-outline w-auto md:w-full">
+          🎨 Tema
+        </label>
+        <ul tabindex="0" class="dropdown-content menu p-2 shadow bg-base-200 rounded-box w-40">
+          <li><a (click)="changeTheme('light')">☀️ Claro</a></li>
+          <li><a (click)="changeTheme('dark')">🌙 Oscuro</a></li>
+          <li><a (click)="changeTheme('night')">🌙 Night</a></li>
+          <li><a (click)="changeTheme('synthwave')">🦄 Synthwave</a></li>
+          <li><a (click)="changeTheme('cupcake')">🍰 Cupcake</a></li>
+
+        </ul>
+      </div>
+    </div>
+  </div>
+</nav>

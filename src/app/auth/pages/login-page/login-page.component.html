@@ -1,8 +1,9 @@
 <!DOCTYPE html>
-<div class="flex flex-col items-center justify-evenly min-h-screen">
+<app-navbar />
+<div class="flex flex-col items-center justify-center h-screen max-w-screen w-full">
   <div class="w-full max-w-xs bg-slate-100 shadow-2xl rounded-lg p-2">
-    <h1 class="text-2xl font-bold text-secondary text-center mb-2">Login</h1>
-    <form [formGroup]="loginForm" (ngSubmit)="loginOnSubmit()" class="flex flex-col gap-4 p-4">
+    <h1 class="text-2xl font-bold text-secondary text-center mb-2">🔐 Inicio de Sesión</h1>
+    <form class="flex flex-col gap-2" [formGroup]="loginForm" (ngSubmit)="loginOnSubmit()">
       <label class="input input-bordered flex items-center gap-2">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="h-4 w-4 opacity-70">
           <path
@@ -12,10 +13,11 @@
         </svg>
         <input type="text" class="grow" placeholder="Correo electrónico" formControlName="email" />
       </label>
-      <button type="submit" class="btn btn-secondary">Continue</button>
+
+
+      <button type="submit" class="btn btn-soft btn-secondary">Acceder</button>
     </form>
   </div>
-
   <div class="mt-4 text-center">
     <p>
       Powered by <a href="https://github.com/CosmicTiger">&#64;CosmicTiger</a>
